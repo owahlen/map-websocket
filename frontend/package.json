@@ -1,0 +1,60 @@
+{
+  "name": "spring-websocket-reactjs",
+  "version": "0.1.0",
+  "description": "Demo of Spring Websocket with ReactJS",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:owahlen/spring-websocket.git"
+  },
+  "keywords": [
+    "rest",
+    "websocket",
+    "spring",
+    "react"
+  ],
+  "author": "Oliver Wahlen",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/owahlen/spring-websocket/issues"
+  },
+  "homepage": "./",
+  "dependencies": {
+    "@stomp/stompjs": "^7.0.0",
+    "@types/node": "^18.18.1",
+    "@types/react": "^18.2.24",
+    "@types/react-dom": "^18.2.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1",
+    "typescript": "^5.2.2",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --watchAll=false",
+    "clean": "rimraf ../src/main/resources/static",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.1.3",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.5.1",
+    "@types/jest": "^27.5.2",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "rimraf": "^5.0.5"
+  },
+  "packageManager": "yarn@1.22.19",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
