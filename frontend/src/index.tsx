@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import './index.css'
 import reportWebVitals from './reportWebVitals'
+import {ThemeProvider} from "@mui/material/styles"
+import {CssBaseline} from "@mui/material"
+import defaultTheme from "./themes/default-theme"
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -10,7 +13,10 @@ const root = ReactDOM.createRoot(
 
 root.render(
     <React.StrictMode>
-        <App/>
+        <ThemeProvider theme={defaultTheme}>
+            <CssBaseline/>
+            <App/>
+        </ThemeProvider>
     </React.StrictMode>
 )
 

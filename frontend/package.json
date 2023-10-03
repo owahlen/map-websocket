@@ -7,7 +7,6 @@
     "url": "git@github.com:owahlen/spring-websocket.git"
   },
   "keywords": [
-    "rest",
     "websocket",
     "spring",
     "react"
@@ -19,6 +18,10 @@
   },
   "homepage": "./",
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.11",
+    "@mui/styles": "^5.14.11",
     "@stomp/stompjs": "^7.0.0",
     "@types/node": "^18.18.1",
     "@types/react": "^18.2.24",
