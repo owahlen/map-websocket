@@ -1,18 +1,11 @@
-import {Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography} from "@mui/material"
+import {Box, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography} from "@mui/material"
 import {styled} from '@mui/material/styles';
 import {tableCellClasses} from '@mui/material/TableCell';
 import Paper from '@mui/material/Paper';
-import {useState} from "react";
-
-// todo: this interface should come from a custom hook
-interface Greeting {
-    message: string
-}
+import {useStomp} from "../hooks/useStomp";
 
 export const Greetings = () => {
-
-    // todo: this state should come from a custom hook
-    const [greetings, setGreetings] = useState<Array<Greeting>>([])
+    const {greetings, clearGreetings} = useStomp()
 
     const StyledTableCell = styled(TableCell)(({theme}) => ({
         [`&.${tableCellClasses.head}`]: {
@@ -34,15 +27,6 @@ export const Greetings = () => {
         },
     }));
 
-    // todo: remove this mock data for development
-    if (greetings.length == 0) {
-        setGreetings([
-            {message: "Hello Jim!"},
-            {message: "Hello John!"},
-            {message: "Hello Bob!"}
-        ])
-    }
-
     return (
         <Box sx={{display: "grid", gap: 1}}>
             <Typography variant={"h6"} component="span">
@@ -52,14 +36,26 @@ export const Greetings = () => {
                 <Table sx={{minWidth: 700}} aria-label="customized table">
                     <TableHead>
                         <TableRow>
-                            <StyledTableCell>Message</StyledTableCell>
+                            <StyledTableCell>
+                                <Box sx={{display: "flex", justifyContent: "space-between", alignItems:"center"}}>
+                                    <Typography>Messages</Typography>
+                                    <Button
+                                        size="small"
+                                        color="primary"
+                                        variant="contained"
+                                        onClick={clearGreetings}
+                                    >
+                                        Clear
+                                    </Button>
+                                </Box>
+                            </StyledTableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {greetings.map((greeting) => (
-                            <StyledTableRow key={greeting.message}>
+                            <StyledTableRow key={greeting.content}>
                                 <StyledTableCell component="th" scope="row">
-                                    {greeting.message}
+                                    {greeting.content}
                                 </StyledTableCell>
                             </StyledTableRow>
                         ))}

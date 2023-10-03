@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import {NameInput} from "./components/NameInput";
 import {Greetings} from "./components/Greetings";
 import {Typography} from "@mui/material";
+import {ErrorToast} from "./components/ErrorToast";
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                     <Greetings/>
                 </Box>
             </Box>
+            <ErrorToast/>
         </main>
     )
 }

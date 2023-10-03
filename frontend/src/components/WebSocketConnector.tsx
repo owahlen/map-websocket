@@ -1,19 +1,23 @@
-import {Button, FormControlLabel, Switch, Typography} from "@mui/material"
+import {Switch, Typography} from "@mui/material"
 import Box from '@mui/material/Box'
-import {useEffect, useState} from "react";
 import * as React from "react";
+import {useEffect, useState} from "react";
+import {useStomp} from "../hooks/useStomp";
 
 export const WebSocketConnector = () => {
 
-    // todo: this state should come from a custom hook
-    const [connected, setConnected] = useState(false)
+    const {connect, disconnect, connected} = useStomp()
     const [checked, setChecked] = useState(false)
 
+    useEffect(() => {
+        setChecked(connected)
+    }, [connected]);
+
     const handleConnectionSwitch = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const checked = event.target.checked
-        setChecked(checked)
-        // todo: this should be a call to establish/terminate the connection
-        setConnected(checked)
+        const newCheckedState = event.target.checked
+        setChecked(newCheckedState)
+        newCheckedState && !connected && connect()
+        !newCheckedState && connected && disconnect()
     }
 
     return (
@@ -28,7 +32,8 @@ export const WebSocketConnector = () => {
             <Typography sx={{
                 paddingTop: 2,
                 paddingBottom: 2,
-                paddingLeft: 2}}>
+                paddingLeft: 2
+            }}>
                 WebSocket State:
             </Typography>
             <Switch checked={checked} onChange={handleConnectionSwitch}/>
@@ -42,7 +47,8 @@ export const WebSocketConnector = () => {
             <Typography sx={{
                 paddingTop: 2,
                 paddingBottom: 2,
-                paddingLeft: 2}}>
+                paddingLeft: 2
+            }}>
                 {connected ? "connected" : "disconnected"}
             </Typography>
         </Box>
