@@ -20,10 +20,7 @@ import { StompSessionSubscription } from './StompSessionSubscription';
  * Please consult the @stomp/stompjs documentation for more information.
  */
 function StompSessionProvider(props: StompSessionProviderProps) {
-    let { url, children, stompClientOptions, ...stompOptions } = props;
-
-    // Support old API
-    if (stompClientOptions) stompOptions = stompClientOptions;
+    let { url, children, ...stompOptions } = props;
 
     const [client, setClient] = useState<Client | undefined>(undefined);
     const subscriptionRequests = useRef(new Map());

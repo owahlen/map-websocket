@@ -1,6 +1,6 @@
 import { useContext } from 'react'
-import StompContext from "../components/stomp/StompContext"
-import {StompSessionProviderContext} from "../components/stomp/StompSessionProviderContext"
+import StompContext from "../provider/stomp/StompContext"
+import {StompSessionProviderContext} from "../provider/stomp/StompSessionProviderContext"
 
 /**
  * Returns the Stomp Client from @stomp/stompjs

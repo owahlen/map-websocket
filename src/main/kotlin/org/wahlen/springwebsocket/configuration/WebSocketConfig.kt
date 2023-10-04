@@ -23,6 +23,8 @@ class WebSocketConfig : WebSocketMessageBrokerConfigurer {
 
     override fun registerStompEndpoints(registry: StompEndpointRegistry) {
         // registers the /gs-guide-websocket endpoint for websocket connections.
-        registry.addEndpoint("/gs-guide-websocket")
+        val registration = registry.addEndpoint("/gs-guide-websocket")
+        // fixme: CORS should be disabled in a production environment (prod profile)
+        registration.setAllowedOrigins("*")
     }
 }

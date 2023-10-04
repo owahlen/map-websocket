@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals'
 import {ThemeProvider} from "@mui/material/styles"
 import {CssBaseline} from "@mui/material"
 import defaultTheme from "./themes/default-theme"
-import StompSessionProvider from "./components/stomp/StompSessionProvider";
+import StompSessionProvider from "./provider/stomp/StompSessionProvider";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
