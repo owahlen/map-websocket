@@ -25,7 +25,7 @@ export const useStomp = () => {
         })
     }
 
-    stompClient.onWebSocketError = (error) => {
+    stompClient.onWebSocketError = () => {
         console.error('Error with websocket');
         setWebSocketError(true)
     };

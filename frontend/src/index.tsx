@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals'
 import {ThemeProvider} from "@mui/material/styles"
 import {CssBaseline} from "@mui/material"
 import defaultTheme from "./themes/default-theme"
+import StompSessionProvider from "./components/stomp/StompSessionProvider";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -14,8 +15,13 @@ const root = ReactDOM.createRoot(
 root.render(
     <React.StrictMode>
         <ThemeProvider theme={defaultTheme}>
+            <StompSessionProvider
+                url={"ws://localhost:8080/gs-guide-websocket"}
+                //All options supported by @stomp/stompjs can be used here
+            >
             <CssBaseline/>
             <App/>
+            </StompSessionProvider>
         </ThemeProvider>
     </React.StrictMode>
 )

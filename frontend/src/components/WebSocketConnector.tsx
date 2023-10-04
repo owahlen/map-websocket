@@ -3,21 +3,23 @@ import Box from '@mui/material/Box'
 import * as React from "react";
 import {useEffect, useState} from "react";
 import {useStomp} from "../hooks/useStomp";
+import useStompClient from "../hooks/useStompClient";
 
 export const WebSocketConnector = () => {
 
+    const stompClient = useStompClient()
     const {connect, disconnect, connected} = useStomp()
     const [checked, setChecked] = useState(false)
 
     useEffect(() => {
-        setChecked(connected)
-    }, [connected]);
+        setChecked(stompClient !== undefined && stompClient.connected)
+    }, [stompClient]);
 
     const handleConnectionSwitch = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newCheckedState = event.target.checked
         setChecked(newCheckedState)
-        newCheckedState && !connected && connect()
-        !newCheckedState && connected && disconnect()
+        newCheckedState && stompClient!==undefined && !stompClient.connected && stompClient.activate()
+        !newCheckedState && stompClient!==undefined && stompClient.connected && stompClient.deactivate()
     }
 
     return (
