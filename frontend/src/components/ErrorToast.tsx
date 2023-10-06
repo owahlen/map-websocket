@@ -1,31 +1,20 @@
 import React, {useEffect, useState} from "react"
 import {Snackbar} from "@mui/material"
 import Alert from "@mui/material/Alert"
-import {useStomp} from "../hooks/useStomp";
+import {useStompClient} from "../hooks/useStompClient";
 
 export const ErrorToast = () => {
-    const {webSocketError, stompError} = useStomp()
+    const {error} = useStompClient()
     const [openSnackbar, setOpenSnackbar] = useState(false)
 
     useEffect(() => {
-        console.log("Analyzing Toast State")
-            if (webSocketError || stompError) {
+            if (error) {
                 !openSnackbar && setOpenSnackbar(true)
             } else {
                 openSnackbar && setOpenSnackbar(false)
             }
-        }, [webSocketError, stompError, openSnackbar]
+        }, [error, openSnackbar]
     )
-
-    const alertText = (): string => {
-        if (webSocketError) {
-            return "WebSocket error"
-        } else if (stompError) {
-            return `Stomp error ${stompError.headers['message']}: ${stompError.body}`
-        } else {
-            return "unknown error"
-        }
-    }
 
     return <Snackbar
         open={openSnackbar}
@@ -33,7 +22,7 @@ export const ErrorToast = () => {
         anchorOrigin={{vertical: "bottom", horizontal: "center"}}
     >
         <Alert severity="error">
-            {alertText()}
+            {error}
         </Alert>
     </Snackbar>
 }

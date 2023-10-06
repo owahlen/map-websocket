@@ -8,26 +8,21 @@ import { messageCallbackType, StompHeaders } from '@stomp/stompjs';
  * @param onMessage Callback called when a message arrives for this subscription
  * @param headers Additional Headers for this subscription, consult @stomp/stompjs docs.
  */
-function useSubscription(
+export const useSubscription = (
     destinations: string | string[],
     onMessage: messageCallbackType,
     headers: StompHeaders = {}
-) {
+) => {
     const stompContext = useContext(StompContext);
-
-    if (stompContext === undefined)
-        throw new Error(
-            'There must be a StompSessionProvider as Ancestor of all Stomp Hooks and HOCs'
-        );
-
     const callbackRef = useRef<messageCallbackType>(onMessage);
-    const _destinations = Array.isArray(destinations)
-        ? destinations
-        : [destinations];
+    const _destinations = Array.isArray(destinations) ? destinations : [destinations];
 
     callbackRef.current = onMessage;
 
     useEffect(() => {
+        // context is undefined if there is no StompSessionProvider accessor
+        if(!stompContext) return
+
         const cleanUpFunctions: (() => void)[] = [];
 
         _destinations.forEach((_destination) =>
@@ -52,5 +47,3 @@ function useSubscription(
         Object.values(headers).toString()
     ]);
 }
-
-export default useSubscription

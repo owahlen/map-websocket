@@ -2,10 +2,19 @@ import {Box, Button, Table, TableBody, TableCell, TableContainer, TableHead, Tab
 import {styled} from '@mui/material/styles';
 import {tableCellClasses} from '@mui/material/TableCell';
 import Paper from '@mui/material/Paper';
-import {useStomp} from "../hooks/useStomp";
+import {useState} from "react";
+import {useSubscription} from "../hooks/useSubscription";
+
+interface Greeting {
+    content: string
+}
 
 export const Greetings = () => {
-    const {greetings, clearGreetings} = useStomp()
+    const [greetings, setGreetings] = useState<Array<Greeting>>([{content: "Hello Joe!"}])
+    useSubscription("/topic/greetings", (greetingMessage) => {
+        const greeting = JSON.parse(greetingMessage.body) as Greeting
+        setGreetings(currentGreetings => [...currentGreetings, greeting])
+    })
 
     const StyledTableCell = styled(TableCell)(({theme}) => ({
         [`&.${tableCellClasses.head}`]: {
@@ -37,13 +46,15 @@ export const Greetings = () => {
                     <TableHead>
                         <TableRow>
                             <StyledTableCell>
-                                <Box sx={{display: "flex", justifyContent: "space-between", alignItems:"center"}}>
+                                <Box sx={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
                                     <Typography>Messages</Typography>
                                     <Button
                                         size="small"
                                         color="primary"
                                         variant="contained"
-                                        onClick={clearGreetings}
+                                        onClick={() => {
+                                            setGreetings([])
+                                        }}
                                     >
                                         Clear
                                     </Button>

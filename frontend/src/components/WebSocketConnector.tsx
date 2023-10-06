@@ -2,24 +2,22 @@ import {Switch, Typography} from "@mui/material"
 import Box from '@mui/material/Box'
 import * as React from "react";
 import {useEffect, useState} from "react";
-import {useStomp} from "../hooks/useStomp";
-import useStompClient from "../hooks/useStompClient";
+import {useStompClient} from "../hooks/useStompClient";
 
 export const WebSocketConnector = () => {
 
-    const stompClient = useStompClient()
-    const {connect, disconnect, connected} = useStomp()
+    const {client, connected} = useStompClient()
     const [checked, setChecked] = useState(false)
 
     useEffect(() => {
-        setChecked(stompClient !== undefined && stompClient.connected)
-    }, [stompClient]);
+        setChecked(client !== undefined && client.connected)
+    }, [client]);
 
     const handleConnectionSwitch = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newCheckedState = event.target.checked
         setChecked(newCheckedState)
-        newCheckedState && stompClient!==undefined && !stompClient.connected && stompClient.activate()
-        !newCheckedState && stompClient!==undefined && stompClient.connected && stompClient.deactivate()
+        newCheckedState && client && !client.connected && client.activate()
+        !newCheckedState && client && client.connected && client.deactivate()
     }
 
     return (

@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import {useContext} from 'react'
 import StompContext from "../provider/stomp/StompContext"
 import {StompSessionProviderContext} from "../provider/stomp/StompSessionProviderContext"
 
@@ -6,17 +6,14 @@ import {StompSessionProviderContext} from "../provider/stomp/StompSessionProvide
  * Returns the Stomp Client from @stomp/stompjs
  * This will be undefined if the client is currently not connected
  */
-function useStompClient() {
+export const useStompClient = () => {
     const context = useContext<StompSessionProviderContext | undefined>(
         StompContext
     );
-
-    if (context === undefined)
-        throw new Error(
-            'There must be a StompSessionProvider as Ancestor of all Stomp Hooks and HOCs'
-        );
-
-    return context.client
+    // context is undefined if there is no StompSessionProvider accessor
+    return {
+        client: context?.client,
+        connected: context?.connected,
+        error: context?.error
+    }
 }
-
-export default useStompClient

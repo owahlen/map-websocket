@@ -1,11 +1,19 @@
 import {Button, TextField} from "@mui/material"
 import Box from '@mui/material/Box'
 import {useState} from "react";
-import {useStomp} from "../hooks/useStomp";
+import {useStompClient} from "../hooks/useStompClient";
 
 export const NameInput = () => {
-    const {sendName} = useStomp()
+    const {client, connected} = useStompClient()
     const [name, setName] = useState("")
+
+    const sendName = (name: string) => {
+        console.log(`Sending name: ${name}`)
+        client?.publish({
+            destination: "/app/hello",
+            body: JSON.stringify({'name': name})
+        });
+    }
 
     return (
         <Box sx={{display: "flex", justifyContent: "start", gap: 2}}>
@@ -25,7 +33,7 @@ export const NameInput = () => {
                 onClick={() => {
                     sendName(name)
                 }}
-                disabled={name === ""}>
+                disabled={name === "" || !connected}>
                 Send
             </Button>
         </Box>

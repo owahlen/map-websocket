@@ -1,7 +1,9 @@
-import { Client, messageCallbackType, StompHeaders } from '@stomp/stompjs';
+import {Client, messageCallbackType, StompHeaders} from '@stomp/stompjs';
 
 export interface StompSessionProviderContext {
-    client?: Client;
+    client?: Client
+    connected: boolean
+    error?: string
     subscribe: (
         destination: string,
         callback: messageCallbackType,
