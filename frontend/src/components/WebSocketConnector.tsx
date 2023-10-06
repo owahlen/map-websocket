@@ -16,8 +16,8 @@ export const WebSocketConnector = () => {
     const handleConnectionSwitch = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newCheckedState = event.target.checked
         setChecked(newCheckedState)
-        newCheckedState && client && !client.connected && client.activate()
-        !newCheckedState && client && client.connected && client.deactivate()
+        newCheckedState && client && !client.active && client.activate()
+        !newCheckedState && client && client.deactivate()
     }
 
     return (
