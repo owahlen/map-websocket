@@ -10,7 +10,7 @@ interface Greeting {
 }
 
 export const Greetings = () => {
-    const [greetings, setGreetings] = useState<Array<Greeting>>([{content: "Hello Joe!"}])
+    const [greetings, setGreetings] = useState<Array<Greeting>>([])
     useSubscription("/topic/greetings", (greetingMessage) => {
         const greeting = JSON.parse(greetingMessage.body) as Greeting
         setGreetings(currentGreetings => [...currentGreetings, greeting])
