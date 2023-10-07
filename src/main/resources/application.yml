@@ -1,3 +1,4 @@
 logging:
   level:
     org.springframework.web.socket: DEBUG
+    org.wahlen.mapwebsocket: DEBUG

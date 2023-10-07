@@ -1,4 +1,4 @@
-package org.wahlen.springwebsocket.model
+package org.wahlen.mapwebsocket.model
 
 data class Greeting(
     var content: String
