@@ -44,11 +44,11 @@ class VehiclePositionService(
         vehicleDistributions.forEach { distribution ->
             repeat(distribution.vehicles) {
                 // Generate a random sample position of a vehicle relative to the city center.
-                // For equal distribution across the city area the probability density of the distance
-                // must be linear increasing between 0 and 1
+                // For equal distribution across the city area the probability density
+                // of the distance from the center must be linear increasing between 0 and the maximum distance.
                 val distance = distribution.radius * 1000.0 * (1.0 - Math.abs(Math.random() + Math.random() - 1.0))
-                // The bearing from the city center is equally distributed between 0 and 2*PI
-                val bearing = 2 * Math.PI * Math.random()
+                // The bearing from the city center is equally distributed between 0 and 360 degree
+                val bearing = 360 * Math.random()
                 // compute the sample vehicle position relative to the city center
                 val position = destinationPoint(distribution.center, distance, bearing)
                 val vehiclePosition = VehiclePosition("vehicle_${positions.size}", position)
