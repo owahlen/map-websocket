@@ -2,7 +2,7 @@ import {Switch, Typography} from "@mui/material"
 import Box from '@mui/material/Box'
 import * as React from "react";
 import {useEffect, useState} from "react";
-import {useStompClient} from "../hooks/useStompClient";
+import {useStompClient} from "../../hooks/useStompClient";
 
 export const WebSocketConnector = () => {
 
@@ -25,15 +25,14 @@ export const WebSocketConnector = () => {
             display: "inline-flex",
             gap: 1,
             alignItems: "center",
-            border: 1,
-            borderColor: "initial",
-            borderRadius: "4px"
+            borderRadius: "4px",
+            paddingTop: "1px",
+            paddingRight: "17px",
+            paddingBottom: "1px",
+            paddingLeft: "17px",
+            bgcolor: "#fff"
         }}>
-            <Typography sx={{
-                paddingTop: 2,
-                paddingBottom: 2,
-                paddingLeft: 2
-            }}>
+            <Typography>
                 WebSocket State:
             </Typography>
             <Switch checked={checked} onChange={handleConnectionSwitch}/>
@@ -44,13 +43,6 @@ export const WebSocketConnector = () => {
                 borderRadius: "50%",
                 display: "inline-block"
             }}/>
-            <Typography sx={{
-                paddingTop: 2,
-                paddingBottom: 2,
-                paddingLeft: 2
-            }}>
-                {connected ? "connected" : "disconnected"}
-            </Typography>
         </Box>
     )
 }

@@ -14,7 +14,7 @@ class CrawlPositionsTask(
 
     private val log = LoggerFactory.getLogger(CrawlPositionsTask::class.java)
 
-    @Scheduled(fixedRate = 10_000)
+    @Scheduled(fixedRate = 1_000)
     fun updatePositions() {
         log.debug("fetching and broadcasting vehicle positions...")
         val positions = vehiclePositionService.getVehiclePositions()

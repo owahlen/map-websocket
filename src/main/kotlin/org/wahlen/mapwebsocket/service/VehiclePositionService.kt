@@ -6,16 +6,13 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.core.io.Resource
 import org.springframework.stereotype.Service
-import org.wahlen.mapwebsocket.model.LatLong
+import org.wahlen.mapwebsocket.model.LatLng
 import org.wahlen.mapwebsocket.model.VehicleDistribution
 import org.wahlen.mapwebsocket.model.VehiclePosition
-import kotlin.math.asin
-import kotlin.math.atan2
-import kotlin.math.cos
-import kotlin.math.sin
+import kotlin.math.*
 
 /**
- * The service simulates vehicle positions coming through external APIs.
+ * The service simulates retrieval of vehicle positions that are usually loaded from third party APIs.
  */
 @Service
 class VehiclePositionService(
@@ -24,10 +21,11 @@ class VehiclePositionService(
     private val vehicleDistributionsResource: Resource
 ) {
     private val log = LoggerFactory.getLogger(VehiclePositionService::class.java)
-    private val EQUATORIAL_RADIUS = 6378137.0
+    private val equatorialRadius = 6378137.0
     private val vehicleDistributions = readVehicleDistributions()
 
     fun getVehiclePositions(): List<VehiclePosition> {
+        log.debug("creating sample of vehicle positions")
         return createSample()
     }
 
@@ -46,7 +44,7 @@ class VehiclePositionService(
                 // Generate a random sample position of a vehicle relative to the city center.
                 // For equal distribution across the city area the probability density
                 // of the distance from the center must be linear increasing between 0 and the maximum distance.
-                val distance = distribution.radius * 1000.0 * (1.0 - Math.abs(Math.random() + Math.random() - 1.0))
+                val distance = distribution.radius * 1000.0 * (1.0 - abs(Math.random() + Math.random() - 1.0))
                 // The bearing from the city center is equally distributed between 0 and 360 degree
                 val bearing = 360 * Math.random()
                 // compute the sample vehicle position relative to the city center
@@ -68,16 +66,16 @@ class VehiclePositionService(
      * @return the destination point
      * @see <a href="http://www.movable-type.co.uk/scripts/latlon.js">latlon.js</a>
      */
-    private fun destinationPoint(start: LatLong, distance: Double, bearing: Double): LatLong {
+    private fun destinationPoint(start: LatLng, distance: Double, bearing: Double): LatLng {
         val theta = Math.toRadians(bearing)
-        val delta: Double = distance / EQUATORIAL_RADIUS // angular distance in radians
-        val phi1 = Math.toRadians(start.latitude)
-        val lambda1 = Math.toRadians(start.longitude)
+        val delta: Double = distance / equatorialRadius // angular distance in radians
+        val phi1 = Math.toRadians(start.lat)
+        val lambda1 = Math.toRadians(start.lng)
         val phi2 = asin(sin(phi1) * cos(delta) + cos(phi1) * sin(delta) * cos(theta))
         val lambda2 = lambda1 + atan2(
             sin(theta) * sin(delta) * cos(phi1),
             cos(delta) - sin(phi1) * sin(phi2)
         )
-        return LatLong(Math.toDegrees(phi2), Math.toDegrees(lambda2))
+        return LatLng(Math.toDegrees(phi2), Math.toDegrees(lambda2))
     }
 }

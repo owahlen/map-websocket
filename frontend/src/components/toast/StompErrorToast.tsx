@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react"
 import {Snackbar} from "@mui/material"
 import Alert from "@mui/material/Alert"
-import {useStompClient} from "../hooks/useStompClient";
+import {useStompClient} from "../../hooks/useStompClient";
 
-export const ErrorToast = () => {
+export const StompErrorToast = () => {
     const {error} = useStompClient()
     const [openSnackbar, setOpenSnackbar] = useState(false)
 

@@ -2,17 +2,17 @@
   {
     "city": "Berlin",
     "center": {
-      "latitude": 52.520008,
-      "longitude": 13.404954
+      "lat": 52.520008,
+      "lng": 13.404954
     },
-    "radius": 16.0,
+    "radius": 20.0,
     "vehicles": 600
   },
   {
     "city": "Hamburg",
     "center": {
-      "latitude": 53.551086,
-      "longitude": 9.993682
+      "lat": 53.551086,
+      "lng": 9.993682
     },
     "radius": 12.0,
     "vehicles": 400
@@ -20,10 +20,73 @@
   {
     "city": "Munich",
     "center": {
-      "latitude": 48.137154,
-      "longitudeitude": 11.576124
+      "lat": 48.137154,
+      "lng": 11.576124
     },
     "radius": 10.0,
     "vehicles": 300
+  },
+  {
+    "city": "Köln",
+    "center": {
+      "lat": 50.935173,
+      "lng": 6.953101
+    },
+    "radius": 10.0,
+    "vehicles": 200
+  },
+  {
+    "city": "Frankfurt am Main",
+    "center": {
+      "lat": 50.110924,
+      "lng": 8.682127
+    },
+    "radius": 10.0,
+    "vehicles": 200
+  },
+  {
+    "city": "Stuttgart",
+    "center": {
+      "lat": 48.783333,
+      "lng": 9.183333
+    },
+    "radius": 10.0,
+    "vehicles": 200
+  },
+  {
+    "city": "Düsseldorf",
+    "center": {
+      "lat": 51.233334,
+      "lng": 6.783333
+    },
+    "radius": 10.0,
+    "vehicles": 200
+  },
+  {
+    "city": "Leipzig",
+    "center": {
+      "lat": 51.340199,
+      "lng": 12.360103
+    },
+    "radius": 10.0,
+    "vehicles": 200
+  },
+  {
+    "city": "Dortmund",
+    "center": {
+      "lat": 51.51494,
+      "lng": 7.466
+    },
+    "radius": 10.0,
+    "vehicles": 200
+  },
+  {
+    "city": "Essen",
+    "center": {
+      "lat": 51.450832,
+      "lng": 7.013056
+    },
+    "radius": 10.0,
+    "vehicles": 200
   }
 ]

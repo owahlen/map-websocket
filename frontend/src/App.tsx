@@ -1,32 +1,21 @@
-import {WebSocketConnector} from "./components/WebSocketConnector";
-import Box from "@mui/material/Box";
-import {NameInput} from "./components/NameInput";
-import {Greetings} from "./components/Greetings";
-import {Typography} from "@mui/material";
-import {ErrorToast} from "./components/ErrorToast";
+import {WebSocketConnector} from "./components/websocket/WebSocketConnector"
+import Box from "@mui/material/Box"
+import {StompErrorToast} from "./components/toast/StompErrorToast"
+import {VehicleMapWrapper} from "./components/map/VehicleMapWrapper"
 
-function App() {
+export const App = () => {
     return (
         <main>
             <Box sx={{
                 width: "100%",
-                maxWidth: "960px",
-                marginLeft: "auto",
-                marginRight: "auto",
-                padding: 1,
-                display: "block",
-                gap: 2
+                height: "100%"
             }}>
-                <Typography variant="h1" component="h1">Hello WebSocket!</Typography>
-                <Box sx={{display: "grid", gap: 2}}>
+                <Box position="absolute" top="10px" right="10px" zIndex="1000">
                     <WebSocketConnector/>
-                    <NameInput/>
-                    <Greetings/>
                 </Box>
+                <VehicleMapWrapper center={{lat: 51.165691, lng: 10.451526}} zoom={6}/>
             </Box>
-            <ErrorToast/>
+            <StompErrorToast/>
         </main>
     )
 }
-
-export default App
