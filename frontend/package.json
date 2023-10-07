@@ -1,10 +1,10 @@
 {
-  "name": "spring-websocket-reactjs",
+  "name": "map-websocket-reactjs",
   "version": "0.1.0",
   "description": "Demo of Spring Websocket with ReactJS",
   "repository": {
     "type": "git",
-    "url": "git@github.com:owahlen/spring-websocket.git"
+    "url": "git@github.com:owahlen/map-websocket.git"
   },
   "keywords": [
     "websocket",
@@ -14,7 +14,7 @@
   "author": "Oliver Wahlen",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/owahlen/spring-websocket/issues"
+    "url": "https://github.com/owahlen/map-websocket/issues"
   },
   "homepage": "./",
   "dependencies": {

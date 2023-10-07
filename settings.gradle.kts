@@ -1,1 +1,1 @@
-rootProject.name = "spring-websocket"
+rootProject.name = "map-websocket"
