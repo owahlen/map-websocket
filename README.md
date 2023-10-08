@@ -27,7 +27,7 @@ The [CrawlPositionTask](src/main/kotlin/org/wahlen/mapwebsocket/task/CrawlPositi
 queries the 
 [VehiclePositionService](src/main/kotlin/org/wahlen/mapwebsocket/service/VehiclePositionService.kt)
 on a short interval for new positions and sends them out using the
-[PositionBroadcastService](src/main/kotlin/org/wahlen/mapwebsocket/service/VehiclePositionService.kt).
+[PositionBroadcastService](src/main/kotlin/org/wahlen/mapwebsocket/service/PositionBroadcastService.kt).
 The VehiclePositionService simulates vehicle positions by generating random coordinates.
 Note, that the broker gets configured in the
 [WebSocketConfig](src/main/kotlin/org/wahlen/mapwebsocket/configuration/WebSocketConfig.kt).
@@ -66,7 +66,7 @@ Therefore, client and server can be built with the command
 ./gradlew build
 ```
 In this step a React app, optimized for production is built and stored
-in the project's [resources/static](src/main/resources/static) folder
+in the `static` folder under [src/main/resources](src/main/resources) folder
 where it gets automatically served from Spring Boot's embedded servlet container. 
 
 ### Run the service
