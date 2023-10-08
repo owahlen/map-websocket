@@ -74,9 +74,9 @@ Start the service with the command
 ```
 ./gradlew bootRun
 ```
-Then user your browser to open the URL
+and use your browser to open the URL
 [http://localhost:8080](http://localhost:8080).
-You should be able to connect to the WebSocket with a _Connect_ switch button.
+You should be able to connect to the WebSocket with the _Connect_ switch button.
 
 The following picture shows the resulting screen and the WebSocket interactions
 taken from the Chrome developer console:
