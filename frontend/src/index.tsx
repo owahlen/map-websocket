@@ -12,13 +12,18 @@ const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 )
 
+const {hostname, port} = window.location
+// If no port is defined the "ws:" URI scheme defaults to port 80.
+// When developing, "yarn start" serves the web app on port 3000
+// while the websocket of the servlet container listens on port 8080.
+// Note, that CORS must be disabled on the server for this to work.
+const wsPort = !port?'80':port==='3000'?'8080':port
+const wsUrl = `ws://${hostname}:${wsPort}/gs-guide-websocket`
+
 root.render(
     <React.StrictMode>
         <ThemeProvider theme={defaultTheme}>
-            <StompSessionProvider
-                url={"ws://localhost:8080/gs-guide-websocket"}
-                //All options supported by @stomp/stompjs can be used here
-            >
+            <StompSessionProvider url={wsUrl}>
                 <CssBaseline/>
                 <App/>
             </StompSessionProvider>
