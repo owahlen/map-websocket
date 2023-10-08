@@ -20,7 +20,6 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@googlemaps/markerclusterer": "^2.5.0",
     "@googlemaps/react-wrapper": "^1.1.35",
     "@mui/material": "^5.14.11",
     "@mui/styles": "^5.14.11",
