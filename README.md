@@ -48,6 +48,14 @@ to integrate with
 [Google Maps](https://developers.google.com/maps).
 
 ### Build the service
+The frontend requires a 
+[Google Maps API key](https://developers.google.com/maps/documentation/javascript/get-api-key).
+Execute the command
+```
+copy frontend/.env.sample frontend/.env
+```
+Then edit the file `frondend/.env` and configure a proper Google Maps API key. 
+
 The Spring Boot based STOMP broker is built using [gradle](https://gradle.org/).
 The [built configuration](build.gradle.kts) uses the
 [frontend-gradle-plugin](https://siouan.github.io/frontend-gradle-plugin)
